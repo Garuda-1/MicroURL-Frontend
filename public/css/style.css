@@ -1,0 +1,82 @@
+:root {
+    font-family: Verdana, sans-serif;
+    font-size: 18px;
+}
+
+header {
+    background: crimson;
+    position: center;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+header .title {
+    color: white;
+    font-weight: bold;
+    margin: 0 auto;
+    font-size: 32px;
+}
+
+main {
+    margin: 4rem;
+    position: center;
+}
+
+main form {
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+
+main form .input {
+    overflow: hidden;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: crimson;
+    width: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+main form .button {
+    background: crimson;
+    border-style: none;
+    border-bottom-color: crimson;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom-style: solid;
+    display: inline-block;
+}
+
+main .error {
+    margin: 2rem auto;
+    background: crimson;
+    border: 2px solid darkred;
+    color: white;
+    padding: 1rem;
+    position: center;
+    text-align: center;
+    width: auto;
+}
+
+main .result {
+    margin: 2rem auto;
+    background: mediumspringgreen;
+    border: 2px solid lightseagreen;
+    color: lightseagreen;
+    padding: 1rem;
+    position: center;
+    text-align: center;
+    width: auto;
+}
+
+footer {
+    margin-top: 2rem;
+    border-top: 2px solid crimson;
+    padding-top: 1rem;
+    text-align: center;
+}

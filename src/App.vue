@@ -1,16 +1,29 @@
 <template>
   <div id="app">
-    <form @submit.prevent="onCreateMapping">
-      <label>
-        URL:
-        <input id="originalUrl" name="Original URL" type="text" v-model="originalUrl"/>
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-    <div class="result">
-      {{response}}
-      <a :href="shortUrl">{{shortUrl}}</a>
-    </div>
+    <header>
+      <div class="title">
+        MicroURL
+      </div>
+    </header>
+    <main>
+      <form @submit.prevent="onCreateMapping">
+        <label>
+          <input class="input" id="originalUrl" name="Original URL" type="text" v-model="originalUrl"
+                 placeholder="Enter your URL here"/>
+        </label>
+        <input class="button" type="submit" value="Submit" />
+      </form>
+      <div class="error" v-if="error.length !== 0">
+        {{error}}
+      </div>
+      <div class="result" v-if="response.length !== 0">
+        {{response}}
+        <a :href="shortUrl">{{shortUrl}}</a>
+      </div>
+    </main>
+    <footer>
+      MicroURL 2020-2021 by Ian Dolzhanskii
+    </footer>
   </div>
 </template>
 
@@ -22,27 +35,40 @@ export default {
   name: 'App',
   data: function() {
     return {
+      error: "",
       response: "",
+      prevInput: "",
       originalUrl: "",
       shortUrl: ""
     }
   },
   beforeCreate() {
     this.$root.$on("onCreateMapping", originalUrl => {
-      axios.post("/url/generate", {
+      if (this.originalUrl === this.prevInput) {
+        return
+      }
+      this.prevInput = this.originalUrl
+      this.error = ""
+      this.shortUrl = ""
+      this.response = "Loading..."
+      axios.post("/generate", {
         originalUrl
       }).then(response => {
-        this.response = "Your short link is " + response.data["shortUrl"]
-        this.shortUrl = "http://localhost:8090/url/short/" + response.data["shortUrl"]
+        this.error = ""
+        this.response = "Your micro link: " + response.data["shortUrl"]
+        this.shortUrl = "http://localhost:8090/" + response.data["shortUrl"]
       }).catch(error => {
-        this.response = "ERROR:" + error
+        this.error = "ERROR: " + error.response.data
+        this.response = ""
         this.shortUrl = ""
       })
     })
   },
   beforeMount() {
     this.response = "";
+    this.error = "";
     this.originalUrl = "";
+    this.prevInput = "";
     this.shortUrl = "";
   },
   methods: {
@@ -52,14 +78,3 @@ export default {
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
