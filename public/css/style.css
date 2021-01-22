@@ -55,7 +55,6 @@ main form .button {
 main .error {
     margin: 2rem auto;
     background: crimson;
-    border: 2px solid darkred;
     color: white;
     padding: 1rem;
     position: center;
@@ -66,7 +65,6 @@ main .error {
 main .result {
     margin: 2rem auto;
     background: mediumspringgreen;
-    border: 2px solid lightseagreen;
     color: lightseagreen;
     padding: 1rem;
     position: center;

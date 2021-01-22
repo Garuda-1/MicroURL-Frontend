@@ -18,7 +18,7 @@
       </div>
       <div class="result" v-if="response.length !== 0">
         {{response}}
-        <a :href="shortUrl">{{shortUrl}}</a>
+        <a target="_blank" rel="noopener noreferrer" :href="shortUrl">{{shortUrl}}</a>
       </div>
     </main>
     <footer>
@@ -29,7 +29,6 @@
 
 <script>
 import axios from 'axios'
-// import VueRouter from 'vue-router'
 
 export default {
   name: 'App',
@@ -55,7 +54,7 @@ export default {
         originalUrl
       }).then(response => {
         this.error = ""
-        this.response = "Your micro link: " + response.data["shortUrl"]
+        this.response = "Your micro link: "
         this.shortUrl = "http://localhost:8090/" + response.data["shortUrl"]
       }).catch(error => {
         this.error = "ERROR: " + error.response.data
