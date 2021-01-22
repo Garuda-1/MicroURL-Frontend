@@ -55,7 +55,7 @@ export default {
       }).then(response => {
         this.error = ""
         this.response = "Your micro link: "
-        this.shortUrl = "http://localhost:8090/" + response.data["shortUrl"]
+        this.shortUrl = "http://100.25.35.204:8090/" + response.data["shortUrl"]
       }).catch(error => {
         this.error = "ERROR: " + error.response.data
         this.response = ""
@@ -74,6 +74,9 @@ export default {
     onCreateMapping: function() {
       this.$root.$emit("onCreateMapping", this.originalUrl)
     }
+  },
+  metaInfo: {
+    title: 'Micro URL'
   }
 }
 </script>
