@@ -76,7 +76,7 @@ export default {
     }
   },
   metaInfo: {
-    title: 'Micro URL'
+    title: 'MicroURL'
   }
 }
 </script>
